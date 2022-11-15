@@ -1,0 +1,77 @@
+agent:
+  ######################################################################
+  # TODO: To customize (override) the default configuration,
+  # uncomment and revise the values
+  ######################################################################
+  #resources:
+  #  requests:
+  #    memory: "512m"
+  #  limits:
+  #    memory: "1G"
+  ######################################################################
+  # TODO: To customize (override) the default configuration,
+  # uncomment and revise the replicaCount value
+  ######################################################################
+  #replicaCount: 2
+  image:
+    repository: 787186362350.dkr.ecr.us-east-1.amazonaws.com/pepagent
+    tag: v7.2.0-SNAPSHOT-sgupta-fixes-optimizer-license-update-ccb9f8d368-20221025
+  envConfig:
+    PD_CLUSTER_NAME: dev-eks
+    PD_UPLOAD_HOSTS: upload-test.pepperdata.com
+    PD_UPLOAD_SSL_VERIFY: 0
+    #PD_MEM_LIMIT:
+    PD_EPHEMERAL_CLUSTER_ID: dev-eks-3
+    PD_EPHEMERAL_CLUSTER_NAME: dev-eks-3
+    #PD_MANAGED_AUTOSCALING_ENABLE: false
+    #PD_EXTRA_CLASSPATH_ITEMS: /opt/pepperdata/supervisor/lib/internal-jars/*
+    #PD_CAPACITY_OPTIMIZER_MAX_PERCENT: 250 
+prometheus:
+#  kubeStateMetrics:
+#    enabled: false
+#  nodeExporter:
+#    enabled: false
+  ######################################################################
+  # TODO: Uncomment and specify your private repository if you
+  # added a privage image
+  ######################################################################
+  configmapReload:
+    prometheus:
+      image:
+        repository: "787186362350.dkr.ecr.us-east-1.amazonaws.com/jimmidyson/configmap-reload"
+        tag: v0.4.0
+
+  ######################################################################
+  # TODO: Uncomment and specify your private repository if you
+  # added a privage image
+  ######################################################################
+  server:
+    image:
+      repository: "787186362350.dkr.ecr.us-east-1.amazonaws.com/prom/prometheus"
+      tag: v2.20.1	
+
+  ######################################################################
+  # TODO: Uncomment and specify your private repository if you
+  # added a privage image
+  ######################################################################
+  pushgateway:
+    image:
+      repository: "787186362350.dkr.ecr.us-east-1.amazonaws.com/prom/pushgateway"
+      tag: v1.2.0
+
+  ######################################################################
+  # TODO: Uncomment and specify your private repository if you
+  # added a privage image
+  ######################################################################
+  nodeExporter:
+    image:
+      repository: "787186362350.dkr.ecr.us-east-1.amazonaws.com/prom/node-exporter"
+      tag: v1.0.1 
+
+  ######################################################################
+  # TODO: Uncomment and specify your private repository if you
+  # added a privage image
+  ######################################################################
+  #kube-state-metrics:
+  #  image:
+  #    repository: "YOUR-DOCKER-REGISTRY/quay.io/coreos/kube-state-metrics"
